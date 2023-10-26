@@ -51,6 +51,26 @@
 | - `Chess_constants`: Arquivo para armazenar algumas constantes relacionadas ao xadrez|
 | - `position`: A estrutura `position` é usada para representar as coordenadas de linha e coluna no tabuleiro. |
 
+| ChessRenderer  |
+|----------------|
+| **Descrição:** A classe `ChessRenderer` lida com a renderização gráfica de um jogo de xadrez, incluindo o tabuleiro, peças e interações do usuário. Um dos membros privados da classe é uma referência
+ao estado do tabuleiro no backend. |
+| **Responsabilidades** | 
+| - Iniciar a janela de renderização e carregar texturas das peças de xadrez. |
+| - Lidar com a renderização geral do jogo de xadrez. |
+| - Renderizar o fundo do tabuleiro. |
+| - Renderizar as peças de xadrez no tabuleiro. |
+| - Renderizar marcações de destinos possíveis. |
+| - Tratar entrada do mouse e retornar a posição do clique no formato da estrutura position.|
+| - Atualizar qual peça está selecionada, se houver. |
+| - Encerrar a janela de renderização e descarregar texturas. |
+| **Colaboradores**     |
+| - `Chessboard`: A classe `Chessboard` é usada para obter informações sobre o estado do jogo de xadrez. |
+| - `Bishop`, `Pawn`, `Knight`, `Queen`, `King`, `Rook`, `Piece`: Classes que representam as peças de xadrez e são usadas para carregar texturas e renderizar peças. |
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+| - `raylib`: Biblioteca utilizada para renderização gráfica e interações com o usuário. |
+
+
 ## User Stories:
 
 **User Story 1 - Iniciar um novo jogo**
