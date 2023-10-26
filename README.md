@@ -17,16 +17,16 @@ Após a definição do problema, iremos desenvolver um programa em C++ que simul
 
 ## 5. Estrutura do Projeto
 
-// estrutura do projeto
+Neste projeto, utilizaremos a programação orientada a objetos (POO) e definiremos os atributos e funções de cada classe nos cartões CRC. Essa abordagem nos ajudará a manter o projeto organizado e de fácil compreensão. Além disso, o código contará com comentários que facilitarão futuras melhorias ou modificações, quando necessário.
 
 ## 6. Instruções de Instalação
 
-// instruçoes de instalação 
+Ainda não foi decidido qual a bordagem vamos usar, estamos pensando em disponibilizar apenas um arquivo executavel ou se vamos disponibilizar o codigo fonte 
 
 
 ## 7. Instruções de Uso
 
-// instruçoes de uso
+A abordagem a ser adotada ainda não foi decidida; estamos considerando se devemos disponibilizar apenas um arquivo executável ou se iremos disponibilizar o código-fonte, onde o usuário poderá utilizar um comando 'make' para iniciar o jogo.
 
 ## 8. Principais Dificuldades
 
@@ -140,9 +140,3 @@ ao estado do tabuleiro no backend. |
 - O sistema deve reconhecer e declarar o xeque-mate quando o rei de um jogador estiver em xeque, e não houver nenhum movimento legal disponível para sair do xeque.
 - Deve ser impossível para o jogador em xeque-mate realizar qualquer ação que o tire da situação, pois não há movimentos legais disponíveis.
 - Os movimentos que levaram ao xeque-mate devem ser legais de acordo com as regras do xadrez.
-
-
-
-
-
-
