@@ -89,7 +89,9 @@
 **User Story 7 - Xeque-mate**
 - **Descrição:** Como um jogador, quero que o xeque-mate esteja implementdado.
 - **Critérios de Aceitação:**
-- 
+- O sistema deve reconhecer e declarar o xeque-mate quando o rei de um jogador estiver em xeque, e não houver nenhum movimento legal disponível para sair do xeque.
+- Deve ser impossível para o jogador em xeque-mate realizar qualquer ação que o tire da situação, pois não há movimentos legais disponíveis.
+- Os movimentos que levaram ao xeque-mate devem ser legais de acordo com as regras do xadrez.
 
 
 
