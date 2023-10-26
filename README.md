@@ -9,11 +9,11 @@
 
 ## 3. Apresentação do Problema
 
-// apresentar o problema
+Com o avanço da tecnologia, os jogos de tabuleiro antigos têm se tornado cada vez mais difíceis de encontrar. Isso tem levado muitos entusiastas a migrarem suas partidas para o mundo online. No entanto, muitos sites que oferecem a experiência do xadrez costumam ser pagos e não permitem que os jogadores desfrutem de partidas com seus amigos no mesmo dispositivo, o que acaba por prejudicar a manutenção das interações presenciais. É por esse motivo que optamos por criar um jogo de xadrez que permite a realização de partidas entre 2 jogadores de forma fácil e sem custos.
 
 ## 4. Visão Geral da Solução
 
-// visao geral
+Após a definição do problema, iremos desenvolver um programa em C++ que simulará um jogo de xadrez com interfaces gráficas intuitivas e de fácil utilização.
 
 ## 5. Estrutura do Projeto
 
@@ -30,7 +30,7 @@
 
 ## 8. Principais Dificuldades
 
-// O tópico será escrito ao término do projeto
+As dificuldades enfrentadas ao longo do projeto serão documentadas após a sua conclusão.
 
 ## Cartões CRC (Classe, Responsabilidade, Colaborador):
 
