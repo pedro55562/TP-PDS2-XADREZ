@@ -62,7 +62,6 @@ ao estado do tabuleiro no backend. |
 | - Renderizar as peças de xadrez no tabuleiro. |
 | - Renderizar marcações de destinos possíveis. |
 | - Tratar entrada do mouse e retornar a posição do clique no formato da estrutura position.|
-| - Atualizar qual peça está selecionada, se houver. |
 | - Encerrar a janela de renderização e descarregar texturas. |
 | **Colaboradores**     |
 | - `Chessboard`: A classe `Chessboard` é usada para obter informações sobre o estado do jogo de xadrez. |
