@@ -80,6 +80,17 @@ Repositorio para entrega do trabalho de PDS2
 - Ao clicar em uma peça, o jogo deve mostrar as posições para as quais essa peça pode se mover.
 - O realce deve ser removido quando o jogador realizar um movimento ou desselecionar a peça.
 
+ **User Story 6 - Xeque**
+- **Descrição:** Como um jogador, quero que o xeque esteja implementdado.
+- **Critérios de Aceitação:**
+- dsada
+- dafsdf
+
+**User Story 7 - Xeque-mate**
+- **Descrição:** Como um jogador, quero que o xeque-mate esteja implementdado.
+- **Critérios de Aceitação:**
+- dsada
+- dadsad
 
 
 
