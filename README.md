@@ -1,5 +1,4 @@
 # TP-PDS2-XADREZ
-Repositorio para entrega do trabalho de PDS2
 
 ## 1. Tema escolhido
 - Jogo de Xadrez
