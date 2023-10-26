@@ -79,6 +79,19 @@ ao estado do tabuleiro no backend. |
 | - Nenhum colaborador direto, mas faz uso das constantes definidas em "Chess_constants.h" para representar o tipo de peça (como `EMPTY`, `PAWN`, `ROOK`, etc.). |
 
 
+| Pawn  |
+|----------------|
+| **Descrição:** A classe `Pawn` representa o peão no jogo de xadrez. Ela herda da classe `Piece` e é responsável por verificar se os movimentos do peão são válidos de acordo com as regras do xadrez. |
+| **Responsabilidades** | 
+| - Verificar se um movimento de peão é válido, considerando a posição de origem, a posição de destino e a cor das peças.
+| - Implementar a lógica de ataque do peão, onde ele pode mover-se diagonalmente uma casa para capturar uma peça adversária.
+| - Gerenciar a capacidade do peão de mover-se duas casas na primeira jogada, desde que não haja obstruções em seu caminho. |
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo e a cor do peão. |
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+| - `Chessboard`: A classe `Chessboard` não é diretamente usada nesta classe, mas é relevante para o contexto do jogo de xadrez. |
+| - `position`: A estrutura `position` é usada para representar as coordenadas de linha e coluna no tabuleiro de xadrez. |
+
 
 ## User Stories:
 
