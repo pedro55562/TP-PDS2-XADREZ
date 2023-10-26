@@ -69,6 +69,16 @@ ao estado do tabuleiro no backend. |
 | - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
 | - `raylib`: Biblioteca utilizada para renderização gráfica e interações com o usuário. |
 
+| Piece  |
+|----------------|
+| **Descrição:** A classe `Piece` representa uma peça no jogo de xadrez, armazenando informações sobre seu tipo e cor.
+| **Responsabilidades** | 
+| - Armazenar o tipo (como peão, torre, rainha, etc.) de uma peça no jogo de xadrez.
+| - Armazenar a cor (branca ou preta) da peça no jogo de xadrez. |
+| **Colaboradores**     |
+| - Nenhum colaborador direto, mas faz uso das constantes definidas em "Chess_constants.h" para representar o tipo de peça (como `EMPTY`, `PAWN`, `ROOK`, etc.). |
+
+
 
 ## User Stories:
 
