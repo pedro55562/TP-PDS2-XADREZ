@@ -34,16 +34,22 @@
 
 ## Cartões CRC (Classe, Responsabilidade, Colaborador):
 
-| Nome da Classe  | 
-|-----------------|
-| **Descrição:**  |          
-| Descrição da classe          |
+| Chessboard  |
+|----------------|
+| **Descrição:** A classe `Chessboard` representa um tabuleiro de xadrez e lida com operações relacionadas à configuração do tabuleiro, movimento de peças e verificação de regras do xadrez. O tabuleiro é representado por uma matriz 8x8, onde cada elemento é um objeto `Piece`. |
 | **Responsabilidades** | 
-| - Responsabilidade 1 |
-| - Responsabilidade 2 |
+| - Montar o tabuleiro a partir de uma configuração FEN padrão ou personalizada. |
+| - Imprimir o tabuleiro na saída padrão. |
+| - Retornar uma peça em uma determinada posição do tabuleiro. |
+| - Mover uma peça do tabuleiro a partir das coordenadas de origem e destino. |
+| - Verificar se um movimento é válido de acordo com as regras do xadrez. |
+| - Verificar se o caminho entre duas posições está limpo para um movimento de peça. |
+| - Retornar uma lista de destinos possíveis para uma peça em uma determinada posição. |
 | **Colaboradores**     |
-| - Colaborador 1 |
-| - Colaborador 2 |
+| - `Piece`: A classe `Piece` é usada para representar as peças de xadrez no tabuleiro. |
+| - `Bishop`, `Pawn`, `Knight`, `Queen`, `King`, `Rook`: Essas classes representam tipos específicos de peças de xadrez e são usadas para criar e gerenciar as peças no tabuleiro. |
+| - `Chess_constants`: Arquivo para armazenar algumas constantes relacionadas ao xadrez|
+| - `position`: A estrutura `position` é usada para representar as coordenadas de linha e coluna no tabuleiro. |
 
 ## User Stories:
 
