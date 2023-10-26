@@ -30,7 +30,7 @@
 
 ## 8. Principais Dificuldades
 
-// principais dificuldades
+// O tópico será escrito ao término do projeto
 
 ## Cartões CRC (Classe, Responsabilidade, Colaborador):
 
@@ -82,14 +82,14 @@
  **User Story 6 - Xeque**
 - **Descrição:** Como um jogador, quero que o xeque esteja implementdado.
 - **Critérios de Aceitação:**
-- dsada
-- dafsdf
+- O movimento que colocou o rei em xeque deve ser legal de acordo com as regras do jogo.
+- O jogo deve continuar após o xeque, permitindo que o jogador em xeque tome medidas para sair da situação.
+- Após um xeque, o jogador deve ser capaz de realizar qualquer movimento legal, incluindo o movimento do rei, desde que ele saia do xeque.
 
 **User Story 7 - Xeque-mate**
 - **Descrição:** Como um jogador, quero que o xeque-mate esteja implementdado.
 - **Critérios de Aceitação:**
-- dsada
-- dadsad
+- 
 
 
 
