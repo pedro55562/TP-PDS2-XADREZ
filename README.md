@@ -81,7 +81,7 @@ ao estado do tabuleiro no backend. |
 
 | Pawn  |
 |----------------|
-| **Descrição:** A classe `Pawn` representa o peão no jogo de xadrez. Ela herda da classe `Piece` e é responsável por verificar se os movimentos do peão são válidos de acordo com as regras do xadrez. |
+| **Descrição:** A classe `Pawn` representa o peão no jogo de xadrez. Ela herda da classe `Piece` |
 | **Responsabilidades** | 
 | - Verificar se um movimento de peão é válido, considerando a posição de origem, a posição de destino e a cor das peças.
 | - Implementar a lógica de ataque do peão, onde ele pode mover-se diagonalmente uma casa para capturar uma peça adversária.
@@ -92,6 +92,51 @@ ao estado do tabuleiro no backend. |
 | - `Chessboard`: A classe `Chessboard` não é diretamente usada nesta classe, mas é relevante para o contexto do jogo de xadrez. |
 | - `position`: A estrutura `position` é usada para representar as coordenadas de linha e coluna no tabuleiro de xadrez. |
 
+| Knight  |
+|----------------|
+| **Descrição:** A classe `Knight` representa a peça cavalo no jogo de xadrez. Ela herda da classe `Piece`|
+| **Responsabilidades** | 
+| - Verificar se um movimento do cavalo é válido, considerando a posição de origem e a posição de destino, de acordo com as regras do xadrez.
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo (cavalo) e a cor do cavalo.
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+
+| Queen  |
+|----------------|
+| **Descrição:** A classe `Queen` representa a peça rainha no jogo de xadrez. Ela herda da classe `Piece`|
+| **Responsabilidades** | 
+| - Verificar se um movimento da rainha é válido, considerando a posição de origem e a posição de destino, de acordo com as regras do xadrez.
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo (rainha) e a cor da rainha.
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+
+| Rook  |
+|----------------|
+| **Descrição:** A classe `Rook` representa a peça torre no jogo de xadrez.  Ela herda da classe `Piece`|
+| **Responsabilidades** | 
+| - Verificar se um movimento da torre é válido, considerando a posição de origem e a posição de destino, de acordo com as regras do xadrez.
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo (torre) e a cor da torre.
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+
+| Bishop  |
+|----------------|
+| **Descrição:** A classe `Bishop` representa a peça bispo no jogo de xadrez. Ela herda da classe `Piece`|
+| **Responsabilidades** | 
+| - Verificar se um movimento do bispo é válido, considerando a posição de origem e a posição de destino, de acordo com as regras do xadrez.
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo (bispo) e a cor do bispo.
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
+
+| King  |
+|----------------|
+| **Descrição:** A classe `King` representa a peça rei no jogo de xadrez. Ela herda da classe `Piece`|
+| **Responsabilidades** | 
+| - Verificar se um movimento do rei é válido, considerando a posição de origem e a posição de destino, de acordo com as regras do xadrez.
+| - Para verificar se o movimento do rei é valido, deve ser onsiderarado se o movimento do rei o coloca em xeque, pois assim o movimento seria inválido.
+| **Colaboradores**     |
+| - `Piece`: A classe `Piece` é herdada e usada para obter informações sobre o tipo (rei) e a cor do rei.
+| - `Chess_constants`: Arquivo que contém constantes relacionadas ao xadrez. |
 
 ## User Stories:
 
