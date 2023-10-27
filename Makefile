@@ -1,35 +1,36 @@
-all:
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -Wextra
+BUILD_DIR = build
+SRC_DIR = src
+INCLUDE_DIR = include
+ASSETS_DIR = assets
+EXE = ChessGame
 
-Bishop:
-	g++ -c ./src/Bishop.cpp -I .include -o ./build/Bishop.o
+ASSETS = $(ASSETS_DIR)/images/chess_pieces/ $(ASSETS_DIR)/sounds/ $(ASSETS_DIR)/fonts/ $(ASSETS_DIR)/config/ $(ASSETS_DIR)/other_assets/
 
-ChessRenderer:
-	g++ -c ./src/ChessRenderer.cpp -I .include -o ./build/ChessRenderer.o
+DEBUG_FLAGS = -O0 -g -DEBUG
 
-Chess_constants:
-	g++ -c ./src/Chess_constants.cpp -I .include -o ./build/Chess_constants.o
+RAYLIB_LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+RAYLIB_INCLUDE = -I/usr/local/include/ 
 
-Chessboard:
-	g++ -c ./src/Chessboard.cpp -I .include -o ./build/Chessboard.o
+OBJ = $(addprefix $(BUILD_DIR)/, main.o Chessboard.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o ChessRenderer.o)
 
-King:
-	g++ -c ./src/King.cpp -I .include -o ./build/King.o
+$(EXE): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(EXE) $(RAYLIB_LIBS)
 
-Knight:
-	g++ -c ./src/Knight.cpp -I .include -o ./build/Knight.o
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $(RAYLIB_INCLUDE) -I$(INCLUDE_DIR) -c $< -o $@
 
-Pawn:
-	g++ -c ./src/Pawn.cpp -I .include -o ./build/Pawn.o
+debug: CXXFLAGS += $(DEBUG_FLAGS)
+debug: $(EXE)
 
-Piece:
-	g++ -c ./src/Piece.cpp -I .include -o ./build/Piece.o
-
-Queen:
-	g++ -c ./src/Queen.cpp -I .include -o ./build/Queen.o
-
-Rook:
-	g++ -c ./src/Rook.cpp -I .include -o ./build/Rook.o
-
-clear:
-	clear
+clean:
+	rm -rf $(BUILD_DIR)/*
+	rm ChessGame
 	
+run:
+	./$(EXE)
+
+
+.PHONY: debug clean run
