@@ -7,6 +7,24 @@
  */
 
 /**
+ * @brief Representação de peças de xadrez em inteiros usando bits.
+ *
+ * No contexto deste código, usamos os 5 bits menos significativos de números inteiros
+ * para representar cada peça de xadrez. Os 3 bits à direita são responsáveis pelo tipo
+ * da peça, enquanto os 2 bits à esquerda indicam a cor da peça. 
+ * 
+ * - 01: Representa peças brancas.
+ * - 10: Representa peças pretas.
+ *
+ * Portanto, ao combinar os bits do tipo e da cor, podemos representar qualquer peça de xadrez
+ * em um único número inteiro.
+ *
+ * Exemplo:
+ * Suponha que desejamos representar um peão branco. Seu tipo é PAWN (6) e sua cor é WHITE (8).
+ * Para combinar essas informações, usamos OR bit a bit (|).
+ */
+
+/**
  * @defgroup ChessPieceTypes Tipos de Peças
  * @{
  */
