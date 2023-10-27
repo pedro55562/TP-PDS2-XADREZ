@@ -45,6 +45,8 @@ As dificuldades enfrentadas ao longo do projeto serão documentadas após a sua 
 | - Verificar se um movimento é válido de acordo com as regras do xadrez. |
 | - Verificar se o caminho entre duas posições está limpo para um movimento de peça. |
 | - Retornar uma lista de destinos possíveis para uma peça em uma determinada posição. |
+| - Avaliar se o rei de um jogador está em xeque. |
+| - Avaliar se um jogador está em xeque-mate, ou seja, em uma situação em que o rei do jogador não pode escapar de um xeque. |
 | **Colaboradores**     |
 | - `Piece`: A classe `Piece` é usada para representar as peças de xadrez no tabuleiro. |
 | - `Bishop`, `Pawn`, `Knight`, `Queen`, `King`, `Rook`: Essas classes representam tipos específicos de peças de xadrez e são usadas para criar e gerenciar as peças no tabuleiro. |
