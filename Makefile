@@ -6,7 +6,7 @@ INCLUDE_DIR = include
 ASSETS_DIR = assets
 EXE = ChessGame
 
-ASSETS = $(ASSETS_DIR)/images/chess_pieces/ $(ASSETS_DIR)/sounds/ $(ASSETS_DIR)/fonts/ $(ASSETS_DIR)/config/ $(ASSETS_DIR)/other_assets/
+ASSETS = $(ASSETS_DIR)/images/chess_pieces/
 
 DEBUG_FLAGS = -O0 -g -DEBUG
 
