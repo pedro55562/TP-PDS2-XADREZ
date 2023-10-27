@@ -1,32 +1,30 @@
 #ifndef CHESS_CONSTANTS_H
 #define CHESS_CONSTANTS_H
 
-// Algumas constantes utilizadas:
+/**
+ * @file Chess_constants.h
+ * @brief Define constantes relacionadas ao xadrez.
+ */
 
-/*
-    Utilizaremos os 5 bits menos significativos de numeros inteiros para 
-    representar cada peça, sendo os da 3 da direita sendo responsavel para o tipo
-    e os 2 da esquerda para a cor.
-    sendo:
-    01: branco
-    10: preto
+/**
+ * @defgroup ChessPieceTypes Tipos de Peças
+ * @{
+ */
+const int EMPTY = 0;  ///< Representa uma casa vazia.
+const int KING = 1;   ///< Representa um rei.
+const int QUEEN = 2;  ///< Representa uma rainha.
+const int ROOK = 3;   ///< Representa uma torre.
+const int BISHOP = 4; ///< Representa um bispo.
+const int KNIGHT = 5; ///< Representa um cavaleiro.
+const int PAWN = 6;   ///< Representa um peão.
+/** @} */
 
-    Abaixo segue a declaração utilizando base 10:
-*/
+/**
+ * @defgroup ChessPieceColors Cores das Peças
+ * @{
+ */
+const int WHITE = 8;  ///< Representa a cor branca.
+const int BLACK = 16; ///< Representa a cor preta.
+/** @} */
 
-    // Constantes para representar casa vazia
-    const int EMPTY = 0;
-
-    // Constantes para representar os tipos de peças
-    const int KING = 1;
-    const int QUEEN = 2;
-    const int ROOK = 3;
-    const int BISHOP = 4;
-    const int KNIGHT = 5;
-    const int PAWN = 6;
-
-    // Constantes para representar as cores
-    const int WHITEn = 8;
-    const int BLACKn = 16;
-
-#endif 
+#endif
