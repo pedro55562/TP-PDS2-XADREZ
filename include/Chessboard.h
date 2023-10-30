@@ -60,6 +60,16 @@ private:
      */
     bool isPathClear(const position& from, const position& to) const;
 
+    /**
+     * @brief Verifica se um movimento de uma posição de origem para uma posição de destino
+     * deixa o rei da cor atual em xeque.
+     *
+     * @param from A posição de origem.
+     * @param to A posição de destino.
+     * @return true se o movimento deixar o rei em xeque, false caso contrário.
+     */
+    bool leavesKingInCheck(const position& from, const position& to) const;
+
 public:
     /**
      * @brief Construtor padrão da classe Chessboard.
@@ -106,6 +116,25 @@ public:
      * @return Uma lista de posições possíveis de destino.
      */
     list<position> getPossibleDestinations(const position& from);
+    
+    /**
+     * @brief Verifica se o rei do jogador atual está em xeque.
+     *
+     * Esta função verifica se o rei do jogador atual está em xeque. Um rei está em xeque quando está sob ataque por uma peça adversária.
+     *
+     * @return true se o rei do jogador atual está em xeque, false caso contrário.
+     */
+    bool isCheck() const;
+
+    /**
+     * @brief Verifica se um jogador está em xeque-mate.
+     *
+     * Verifica se o jogador atual está em xeque-mate, ou seja, em uma situação em que o rei
+     * do jogador não pode escapar de um xeque. Se for xeque-mate, o jogo deve terminar.
+     *
+     * @return true se o jogador estiver em xeque-mate, false caso contrário.
+     */
+    bool isCheckmate() const;
 };
 
 #endif
