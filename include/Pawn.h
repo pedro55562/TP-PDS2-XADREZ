@@ -20,7 +20,7 @@ public:
      * @brief Construtor da classe Pawn.
      * @param pawncolor A cor da peça de peão (WHITE ou BLACK).
      */
-    Pawn(int pawncolor);
+    Pawn(const int& pawncolor);
 
     /**
      * @brief Verifica se um movimento é válido para o peão.
@@ -31,7 +31,7 @@ public:
      * @param toCollor A cor da peça de destino (WHITE ou BLACK). Serve para verificar se há uma peça no destino e saber a sua cor.
      * @return true se o movimento for válido, false caso contrário.
      */
-    bool isValidPawnMove(int fromX, int fromY, int toX, int toY, int toCollor);
+    bool isValidPawnMove(const int& fromX, const int& fromY, const int& toX, const int& toY, const int& toCollor);
 };
 
 #endif

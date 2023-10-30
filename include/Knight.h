@@ -31,7 +31,7 @@ public:
      * @param toY A coordenada Y da posição de destino.
      * @return true se o movimento for válido, false caso contrário.
      */
-    bool isValidKnightMove(int fromX, int fromY, int toX, int toY) const;
+    bool isValidKnightMove(const int& fromX, const int& fromY, const int& toX, const int& toY) const;
 };
 
 #endif

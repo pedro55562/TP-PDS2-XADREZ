@@ -49,7 +49,7 @@ private:
      * @param to A posição de destino.
      * @return true se o movimento for válido, false caso contrário.
      */
-    bool isValidMove(const position from, const position to) const;
+    bool isValidMove(const position& from, const position& to) const;
 
     /**
      * @brief Verifica se o caminho entre duas posições está livre de obstáculos.
@@ -58,7 +58,7 @@ private:
      * @param to A posição de destino.
      * @return true se o caminho estiver livre, false caso contrário.
      */
-    bool isPathClear(const position from, const position to) const;
+    bool isPathClear(const position& from, const position& to) const;
 
 public:
     /**
@@ -71,7 +71,7 @@ public:
     /**
      * @brief Construtor da classe Chessboard com um FEN personalizado.
      *
-     * Cria um tabuleiro de xadrez com base em um FEN (Notação de Álgebra de Xadrez) fornecido como parâmetro.
+     * Cria um tabuleiro de xadrez com base em um FEN fornecido como parâmetro.
      *
      * @param fen A string FEN que descreve o estado do tabuleiro. [vide](https://www.chess.com/terms/fen-chess)
      */
@@ -89,7 +89,7 @@ public:
      * @param col A coluna da posição.
      * @return A peça na posição especificada.
      */
-    Piece retPiece(const int row, const int col) const;
+    Piece retPiece(const int& row, const int& col) const;
 
     /**
      * @brief Move uma peça de uma posição de origem para uma posição de destino.
@@ -97,7 +97,7 @@ public:
      * @param from A posição de origem.
      * @param to A posição de destino.
      */
-    void movePiece(const position from, const position to);
+    void movePiece(const position& from, const position& to);
 
     /**
      * @brief Obtém uma lista de destinos possíveis para uma peça em uma determinada posição.
@@ -105,7 +105,7 @@ public:
      * @param from A posição da peça.
      * @return Uma lista de posições possíveis de destino.
      */
-    list<position> getPossibleDestinations(const position from);
+    list<position> getPossibleDestinations(const position& from);
 };
 
 #endif

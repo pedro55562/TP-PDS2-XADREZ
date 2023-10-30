@@ -75,7 +75,7 @@ private:
      * @param row A linha atual.
      * @param col A coluna atual.
      */
-    void renderBoard(const int row, const int col) const;
+    void renderBoard(const int& row, const int& col) const;
 
     /**
      * @brief Renderiza uma peça na posição especificada.
@@ -84,14 +84,14 @@ private:
      * @param col A coluna da posição.
      * @param row A linha da posição.
      */
-    void renderPiece(const Texture2D pieceTexture, const int col, const int row) const;
+    void renderPiece(const Texture2D& pieceTexture, const int& col, const int& row) const;
 
     /**
      * @brief Renderiza marcações nos destinos possíveis.
      *
      * @param from A posição de origem da peça.
      */
-    void renderPossibleDestinations(const position from) const;
+    void renderPossibleDestinations(const position& from) const;
 
 public:
     /**

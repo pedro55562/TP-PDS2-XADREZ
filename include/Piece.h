@@ -20,7 +20,7 @@ public:
     /// @brief Construtor da classe Piece.
     /// @param type1 O tipo da peça (ex: PAWN, ROOK, QUEEN, etc).
     /// @param color1 A cor da peça (WHITEn ou BLACKn).
-    Piece(int type1, int color1);
+    Piece(const int& type1, const int& color1);
 
     /// @brief Construtor padrão da classe Piece.
     /// Constroi uma peça vazia, ou seja type = 0 e color = 0.

@@ -19,7 +19,7 @@ public:
      * @brief Construtor da classe Rook.
      * @param RookColor A cor da peça de torre (WHITE ou BLACK).
      */
-    Rook(int RookColor);
+    Rook(const int RookColor);
 
     /**
      * @brief Verifica se um movimento é válido para a torre.
@@ -29,7 +29,7 @@ public:
      * @param toY A coordenada Y da posição de destino.
      * @return true se o movimento for válido, false caso contrário.
      */
-    bool isValidRookMove(int fromX, int fromY, int toX, toY) const;
+    bool isValidRookMove(const int& fromX, const int& fromY, const int& toX, const int& toY) const;
 };
 
 #endif

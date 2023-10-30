@@ -19,7 +19,7 @@ public:
      * @brief Construtor da classe King.
      * @param KingColor A cor da peça de rei (WHITE ou BLACK).
      */
-    King(int KingColor);
+    King(const int& KingColor);
 
     /**
      * @brief Verifica se um movimento é válido para o rei.
@@ -29,7 +29,7 @@ public:
      * @param toY A coordenada Y da posição de destino.
      * @return true se o movimento for válido, false caso contrário.
      */
-    bool isValidKingMove(int fromX, int fromY, int toX, int toY) const;
+    bool isValidKingMove(const int& fromX, const int& fromY, const int& toX, const int& toY) const;
 };
 
 #endif
