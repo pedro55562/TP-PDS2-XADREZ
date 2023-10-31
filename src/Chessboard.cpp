@@ -104,3 +104,42 @@ Chessboard::Chessboard(const string& fen)
         }
     }
 }
+
+
+    /**
+     * @brief Imprime o tabuleiro na saída padrão.
+     */
+void Chessboard::printBoard() const
+{
+    // Loop para imprimir os tipos das peças no tabuleiro
+    cout << endl << " Imprimindo o tido das peças: " << endl << endl;
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            cout << " " << board[i][j].getType();
+        }
+        cout << endl; // Avança para a próxima linha após imprimir uma linha completa do tabuleiro
+    }
+    cout << endl;
+
+    // Loop para imprimir as cores das peças no tabuleiro
+    cout << endl << " Imprimindo a cor das peças: " << endl << endl;
+    for (int i = 0; i < BOARD_SIZE; i++)
+    {
+        for (int j = 0; j < BOARD_SIZE; j++)
+        {
+            cout << " " << board[i][j].getColor();
+        }
+        cout << endl; // Avança para a próxima linha após imprimir uma linha completa do tabuleiro
+    }
+    cout << endl;
+}
+
+    /**
+     * @brief Retorna a peça em uma posição específica no tabuleiro.
+     *
+     * @param row A linha da posição.
+     * @param col A coluna da posição.
+     * @return A peça na posição especificada.
+     */

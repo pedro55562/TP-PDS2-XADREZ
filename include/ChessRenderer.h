@@ -24,7 +24,7 @@
  */
 const int size = 8; ///< Tamanho do tabuleiro (8x8).
 const int pixels = 800; ///< Tamanho da janela em pixels.
-const int squaresize = pixels / size; ///< Tamanho de cada casa do tabuleiro em pixels.
+const int squaresize = 100; ///< Tamanho de cada casa do tabuleiro em pixels.
 /** @} */
 
 /**
@@ -43,7 +43,7 @@ const Color red_ = {230, 41, 55, 60}; ///< Cor vermelha para destinos possíveis
 class ChessRenderer {
 
 private:
-    bool shouldClose; ///< Indica se a janela deve ser fechada.
+    bool shouldclose_; ///< Indica se a janela deve ser fechada.
     Chessboard& board; ///< Referência para o tabuleiro do backend.
 
     position SelectedPiece; ///< Armazena a posição da peça selecionada.
