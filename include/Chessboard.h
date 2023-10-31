@@ -7,6 +7,19 @@
 #include <sstream>
 #include <list>
 
+#include "Bishop.h"
+#include "Pawn.h"
+#include "Knight.h"
+#include "Queen.h"
+#include "King.h"
+#include "Rook.h"
+#include "Piece.h"
+#include "Chess_constants.h"
+
+using std::vector;
+using std::list;
+using std::string;
+
 /**
  * @struct position
  * @brief Estrutura para representar a posição com linhas e colunas.
@@ -16,22 +29,9 @@ struct position {
     int col; ///< A coluna da posição.
 };
 
-using std::vector;
-using std::list;
-using std::string;
-
 const int BOARD_SIZE = 8; ///< Tamanho padrão do tabuleiro de xadrez.
 
-const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; ///< FEN padrão para um tabuleiro de xadrez inicial. [vide](https://www.chess.com/terms/fen-chess)
-
-#include "Bishop.h"
-#include "Pawn.h"
-#include "Knight.h"
-#include "Queen.h"
-#include "King.h"
-#include "Rook.h"
-#include "Piece.h"
-#include "Chess_constants.h"
+const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; ///< FEN padrão para um tabuleiro de xadrez inicial. [Saiba mais](https://www.chess.com/terms/fen-chess)
 
 /**
  * @class Chessboard
@@ -71,19 +71,17 @@ private:
     bool leavesKingInCheck(const position& from, const position& to) const;
 
 public:
-    /**
-     * @brief Construtor padrão da classe Chessboard.
-     *
-     * Cria um tabuleiro de xadrez com a configuração padrão.
-     */
-    Chessboard();
 
     /**
      * @brief Construtor da classe Chessboard com um FEN personalizado.
      *
-     * Cria um tabuleiro de xadrez com base em um FEN fornecido como parâmetro.
-     *
-     * @param fen A string FEN que descreve o estado do tabuleiro. [vide](https://www.chess.com/terms/fen-chess)
+     *   Este construtor cria um tabuleiro de xadrez com base em uma notação FEN fornecida como parâmetro. 
+     * O FEN é uma representação textual que descreve o estado atual de um tabuleiro de xadrez.
+     * 
+     *   Se o FEN passado como argumento for o  defaultFen (que representa a configuração inicial de peças no tabuleiro), 
+     * o construtor criará um tabuleiro com essa configuração padrão.
+     * 
+     * @param fen A string FEN que descreve o estado do tabuleiro. [Saiba mais](https://www.chess.com/terms/fen-chess)
      */
     Chessboard(const string& fen);
 
