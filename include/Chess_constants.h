@@ -41,8 +41,8 @@ const int PAWN = 6;   ///< Representa um peão.
  * @defgroup ChessPieceColors Cores das Peças
  * @{
  */
-const int WHITE = 8;  ///< Representa a cor branca.
-const int BLACK = 16; ///< Representa a cor preta.
+const int WHITEn = 8;  ///< Representa a cor branca.
+const int BLACKn = 16; ///< Representa a cor preta.
 /** @} */
 
 #endif
