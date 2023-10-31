@@ -28,7 +28,13 @@ Ainda não foi decidido qual a bordagem vamos usar, estamos pensando em disponib
 
 A abordagem a ser adotada ainda não foi decidida; estamos considerando se devemos disponibilizar apenas um arquivo executável ou se iremos disponibilizar o código-fonte, onde o usuário poderá utilizar um comando 'make' para iniciar o jogo.
 
-## 8. Principais Dificuldades
+## 8. Bibliotecas externas utilizadas
+
+Este projeto foi desenvolvido com o uso da biblioteca [Raylib](https://www.raylib.com/), que fornece recursos gráficos e interações com o usuário para criar a interface gráfica do jogo de xadrez.
+
+Certifique-se de verificar os requisitos de instalação da biblioteca Raylib antes de compilar e executar o projeto.
+
+## 9. Principais Dificuldades
 
 As dificuldades enfrentadas ao longo do projeto serão documentadas após a sua conclusão.
 
