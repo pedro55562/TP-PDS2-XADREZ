@@ -136,6 +136,7 @@ void Chessboard::printBoard() const
     cout << endl;
 }
 
+
     /**
      * @brief Retorna a peça em uma posição específica no tabuleiro.
      *
@@ -143,3 +144,7 @@ void Chessboard::printBoard() const
      * @param col A coluna da posição.
      * @return A peça na posição especificada.
      */
+Piece Chessboard::retPiece(const int& row, const int& col) const
+{
+    return board[row][col];
+}
