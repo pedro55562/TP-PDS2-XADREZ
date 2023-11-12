@@ -1,14 +1,6 @@
 #include "../include/Pawn.h"
 
-//qual a variavel que armazena a quantidade de movimento de cada peça? 
 
- //fromX A coordenada X da posição de origem.
- //fromY A coordenada Y da posição de origem.
- //toX A coordenada X da posição de destino.
- //toY A coordenada Y da posição de destino.
- //toCollor A cor da peça de destino (WHITE ou BLACK).
- //preta = cima
- //branca = baixo
 bool Pawn:: isValidPawnMove(const int& fromX, const int& fromY, const int& toX, const int& toY, const int& toCollor){
                 //REGRAS DA PEÇA 
 // peão na primeira jogada pode andar 2 casas para frente

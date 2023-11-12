@@ -14,16 +14,23 @@
 // bispo se movimenta na diagonal 
 //https://docente.ifrn.edu.br/geraldosilva/xadrez/REGRAS.pdf
 
-    if(fromX + 1 == toX && fromY + 1 == toY){//diagonal superior direita em relação ao centro
+    int tamanho;
+    if(fromX > toX){
+        tamanho = fromX - toX;
+    }else{
+        tamanho = toX - fromX;
+    }
+
+    if(fromX + tamanho == toX && fromY + tamanho == toY){//diagonal superior direita em relação ao centro
         return true;
 
-    }else if(fromX - 1 == toX && fromY + 1 == toY){//diagonal superio esquerda em relação ao centro
+    }else if(fromX - tamanho == toX && fromY + tamanho == toY){//diagonal superio esquerda em relação ao centro
         return true;
 
-    }else if(fromX + 1 == toX && fromY - 1 == toY){//diagonal inferior direita em relação ao centro
+    }else if(fromX + tamanho == toX && fromY - tamanho == toY){//diagonal inferior direita em relação ao centro
         return true;
 
-    }else if(fromX - 1 == toX && fromY - 1 == toY){//diagonal inferior esquerda em relação ao centro
+    }else if(fromX - tamanho == toX && fromY - tamanho == toY){//diagonal inferior esquerda em relação ao centro
         return true;
 
     }else{//movimento invalido 
