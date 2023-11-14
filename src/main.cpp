@@ -29,6 +29,9 @@ int main (){
   Chessboard board(defaultFen);
 // Imprimindo o tabuleiro no terminal
   board.printBoard();
-
+  while (){
+    
+  }
+  
   return 0;
 }

@@ -3,9 +3,9 @@
 #include <list>
 #include <raylib.h>
 #include <iostream>
-#include "ChessRenderer.h"
 
 using std::list;
+
 
 // Construtor da classe ChessRenderer
 ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
@@ -34,6 +34,37 @@ ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
   KNIGHT_WHITE = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/KNIGHT_WHITE.png"));
   PAWN_WHITE = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/PAWN_WHITE.png"));
 }
+
+
+// Renderiza o quadrado do tabuleiro na posição (row, col) com a cor apropriada (claro ou escuro).
+void ChessRenderer::renderBoard(const int& row, const int& col) const
+{
+  // Verifica se a soma de linha e coluna é par ou ímpar para determinar a cor do quadrado
+  bool isLight = (row + col) % 2 == 0;
+
+  // Se for um quadrado claro, desenha um retângulo com a cor "light", caso contrário, com a cor "dark"
+  if (isLight)
+  {
+    DrawRectangle(col * squaresize, row * squaresize, squaresize, squaresize, light);
+  }
+  else
+  {
+    DrawRectangle(col * squaresize, row * squaresize, squaresize, squaresize, dark);
+  }
+}
+
+
+// Renderiza uma peça na posição especificada com a textura fornecida.
+void ChessRenderer::renderPiece(const Texture2D& pieceTexture, const int& col, const int& row) const
+{
+  Vector2 temp;
+  temp.x = col * squaresize; // Calcula a coordenada x na tela com base na coluna
+  temp.y = row * squaresize; // Calcula a coordenada y na tela com base na linha
+
+  // Desenha a textura da peça na posição (x, y) com uma rotação de 0 graus, escala de 0.125 e cor branca
+  DrawTextureEx(pieceTexture, temp, 0, 0.125, WHITE);
+}
+
 
 // Destrutor da classe ChessRenderer
 ChessRenderer::~ChessRenderer()
