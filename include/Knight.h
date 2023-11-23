@@ -21,7 +21,7 @@ public:
      * @brief Construtor da classe Knight.
      * @param KingColor A cor da peça de cavaleiro (WHITE ou BLACK).
      */
-    Knight(int KingColor);
+    Knight(const int& KingColor);
 
     /**
      * @brief Verifica se um movimento é válido para o cavaleiro.

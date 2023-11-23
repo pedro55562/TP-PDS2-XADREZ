@@ -19,7 +19,7 @@ public:
      * @brief Construtor da classe Rook.
      * @param RookColor A cor da peça de torre (WHITE ou BLACK).
      */
-    Rook(const int RookColor);
+    Rook(const int& RookColor);
 
     /**
      * @brief Verifica se um movimento é válido para a torre.

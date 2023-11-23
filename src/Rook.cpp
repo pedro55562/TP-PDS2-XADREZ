@@ -7,7 +7,21 @@
  //toCollor A cor da peça de destino (WHITE ou BLACK).
  //preta = cima
  //branca = baixo
+    
+    /**
+     * @brief Construtor da classe Rook.
+     * @param RookColor A cor da peça de torre (WHITE ou BLACK).
+     */
+Rook::Rook(const int& RookColor) : Piece(ROOK, RookColor){}
 
+    /**
+     * @brief Verifica se um movimento é válido para a torre.
+     * @param fromX A coordenada X da posição de origem.
+     * @param fromY A coordenada Y da posição de origem.
+     * @param toX A coordenada X da posição de destino.
+     * @param toY A coordenada Y da posição de destino.
+     * @return true se o movimento for válido, false caso contrário.
+     */
 bool Rook :: isValidRookMove(const int& fromX, const int& fromY, const int& toX, const int& toY)const{
                     //REGRAS DA PEÇA 
 // torre se movimenta na horizontal e vertical quantas casas desejar

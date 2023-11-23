@@ -19,7 +19,7 @@ public:
      * @brief Construtor da classe Queen.
      * @param QueenColor A cor da peça de rainha (WHITE ou BLACK).
      */
-    Queen(int QueenColor);
+    Queen(const int& QueenColor);
 
     /**
      * @brief Verifica se um movimento é válido para a rainha.

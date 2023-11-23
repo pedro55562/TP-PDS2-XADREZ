@@ -1,12 +1,12 @@
-//
-// *****************************************************
-// *                                                   *
-// * O Lord, Thank you for your goodness in our lives. *
-// *     Please bless this code to our compilers.      *
-// *                     Amen.                         *
-// *                                                   *
-// *****************************************************
-//
+/*
+  *****************************************************
+  *                                                   *
+  * O Lord, Thank you for your goodness in our lives. *
+  *     Please bless this code to our compilers.      *
+  *                     Amen.                         *
+  *                                                   *
+  *****************************************************
+*/
 
 #include "../include/ChessRenderer.h"
 #include "../include/Chessboard.h"
