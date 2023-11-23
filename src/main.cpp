@@ -10,7 +10,6 @@
 
 #include "../include/ChessRenderer.h"
 #include "../include/Chessboard.h"
-#include "Chess_constants.h"
 
 #include <list>
 #include <string>
@@ -36,10 +35,17 @@ int main (){
 
   // Loop principal do jogo
   while ( !graphicboard.shouldClose() ){
-  
-    // Chama a função render do ChessRenderer para atualizar e desenhar o tabuleiro
     graphicboard.render();
-  
+    position movefrom = graphicboard.handleMouseInput();
+    graphicboard.updateSelectedPiece(movefrom);
+    position moveto;
+    if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY && graphicboard.shouldClose() == false){
+      moveto = graphicboard.handleMouseInput();
+    }
+    board.movePiece(movefrom, moveto);
+    graphicboard.updateSelectedPiece(movefrom);
+    cout << "--------\n";
+    board.printBoard();
   }
   
   return 0;

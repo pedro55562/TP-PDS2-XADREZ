@@ -29,6 +29,8 @@ Chessboard::Chessboard(const string& fen)
     // Redimensionando a matriz board para o tamanho do tabuleiro(8x8).
     board.resize(BOARD_SIZE, vector<Piece>(BOARD_SIZE));
     
+    isWhiteTurn = true;
+
     // Começa a partir da posiçao 0,0 (canto superior esquerdo do tabuleiro)
     int row = 0;
     int col = 0;
@@ -276,20 +278,20 @@ bool Chessboard::isPathClear(const position& from, const position& to) const
 bool Chessboard::isValidMove(const position& from, const position& to) const {
     // Verifica se o caminho entre as posições está livre de obstáculos
     bool isitclear = isPathClear(from, to);
-
+    
     // Se o caminho não estiver livre, retorna falso
     if (isitclear == false) {
-        return false;
+                return false;
     }
     
     // Verifica se é o turno das peças brancas e se a peça na posição de origem é preta
     if (isWhiteTurn && retPiece(from.row, from.col).getColor() == BLACKn) {
-        return false; // Retorna falso se for o turno das brancas e a peça na posição de origem for preta
+                return false; // Retorna falso se for o turno das brancas e a peça na posição de origem for preta
     }
     
     // Verifica se não é o turno das peças brancas e se a peça na posição de origem é branca
     if (!isWhiteTurn && retPiece(from.row, from.col).getColor() == WHITEn) {
-        return false; // Retorna falso se não for o turno das brancas e a peça na posição de origem for branca
+                return false; // Retorna falso se não for o turno das brancas e a peça na posição de origem for branca
     }
     
     // Verifica o tipo de peça na posição de origem e chama o método correspondente para validar o movimento

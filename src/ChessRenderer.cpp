@@ -4,6 +4,7 @@
 #include <raylib.h>
 #include <iostream>
 
+using std::cout;
 using std::list;
 
 
@@ -65,6 +66,19 @@ void ChessRenderer::renderPiece(const Texture2D& pieceTexture, const int& col, c
   DrawTextureEx(pieceTexture, temp, 0, 0.125, WHITE);
 }
 
+// Renderiza visualmente as posições possíveis para mover uma peça a partir de uma posição específica no tabuleiro de xadrez.
+void ChessRenderer::renderPossibleDestinations(const position &from) const
+{
+    // Obtém a lista de destinos possíveis para a peça na posição 'from' no tabuleiro
+    list<position> lista_ = board.getPossibleDestinations(from);
+
+    // Itera sobre cada posição na lista de destinos possíveis
+    for (auto pmove : lista_) {
+        // Desenha um retângulo vermelho na tela para destacar a posição possível
+        // A função DrawRectangle desenha um retângulo na posição especificada com largura e altura 'squaresize' e cor 'red_'
+        DrawRectangle(pmove.col * squaresize, pmove.row * squaresize, squaresize, squaresize, red_);
+    }
+}
 
 // Função principal de renderização do jogo
 void ChessRenderer::render()
@@ -78,7 +92,18 @@ void ChessRenderer::render()
   {
     for (int col = 0; col < size; col++)
     {
-      renderBoard(row, col);
+      renderBoard(row, col); // Chama a função para renderizar as posições possíveis para a peça selecionada
+    }
+  }
+
+  // Destaca as posições possíveis se uma peça estiver selecionada
+  for (int row = 0; row < size; row++)
+  {
+    for (int col = 0; col < size; col++)
+    {
+      if ( isPieceSelected){
+        renderPossibleDestinations(SelectedPiece);
+      }    
     }
   }
 
@@ -167,7 +192,7 @@ position ChessRenderer::handleMouseInput()
       aux.row = row;
       aux.col = col;
       click = true; // Marca que um clique ocorreu
-      return aux;   // Retorna a posição do clique do mouse
+            return aux;   // Retorna a posição do clique do mouse
     }
   }
 
