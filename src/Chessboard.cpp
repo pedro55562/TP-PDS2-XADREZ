@@ -185,3 +185,139 @@ void Chessboard::movePiece(const position& from, const position& to) {
         return;
     }
 }
+
+    /**
+     * @brief Verifica se o caminho entre duas posições está livre de obstáculos.
+     *
+     * @param from A posição de origem.
+     * @param to A posição de destino.
+     * @return true se o caminho estiver livre, false caso contrário.
+     */
+bool Chessboard::isPathClear(const position& from, const position& to) const
+{
+    // Verifica se a posição inicial é a mesma que a posição final
+    if (from.row == to.row && from.col == to.col)
+    {
+        return false; // Retorna falso se a posição inicial e final forem iguais (não há movimento)
+    }
+
+    int dRow = to.row - from.row; // Calcula a diferença nas linhas entre as posições
+    int dCol = to.col - from.col; // Calcula a diferença nas colunas entre as posições
+
+    // Movimento diagonal:
+    if (abs(dRow) == abs(dCol))
+    {
+        // Define a direção do movimento na diagonal
+        int dirRow = (dRow > 0) ? 1 : -1;
+        int dirCol = (dCol > 0) ? 1 : -1;
+
+        // Verifica o caminho diagonal entre as posições
+        for (int curRow = from.row + dirRow, curCol = from.col + dirCol; curRow != to.row && curCol != to.col; curRow += dirRow, curCol += dirCol)
+        {
+            if (curRow > -1 && curRow < 8 && curCol > -1 && curCol < 8)
+            {
+                // Verifica se há peças no caminho diagonal
+                if (retPiece(curRow, curCol).getType() != EMPTY)
+                {
+                    return false; // Retorna falso se houver uma peça no caminho
+                }
+            }
+        }
+    }
+
+    // Movimento pelas linhas
+    if (dCol == 0 && dRow != 0)
+    {
+        int dirRow = (dRow > 0) ? 1 : -1;
+
+        // Verifica o caminho vertical entre as posições
+        for (int curRow = from.row + dirRow; curRow != to.row; curRow += dirRow)
+        {
+            if (curRow > -1 && curRow < 8)
+            {
+                // Verifica se há peças no caminho vertical
+                if (retPiece(curRow, from.col).getType() != EMPTY)
+                {
+                    return false; // Retorna falso se houver uma peça no caminho
+                }
+            }
+        }
+    }
+
+    // Movimento pelas colunas
+    if (dCol != 0 && dRow == 0)
+    {
+        int dirCol = (dCol > 0) ? 1 : -1;
+
+        // Verifica o caminho horizontal entre as posições
+        for (int curCol = from.col + dirCol; curCol != to.col; curCol += dirCol)
+        {
+            if (curCol > -1 && curCol < 8)
+            {
+                // Verifica se há peças no caminho horizontal
+                if (retPiece(from.row, curCol).getType() != EMPTY)
+                {
+                    return false; // Retorna falso se houver uma peça no caminho
+                }
+            }
+        }
+    }
+
+    return true; // Retorna verdadeiro se o caminho estiver livre entre as posições
+}
+
+    /**
+     * @brief Verifica se um movimento de uma posição para outra é válido.
+     *
+     * @param from A posição de origem.
+     * @param to A posição de destino.
+     * @return true se o movimento for válido, false caso contrário.
+     */
+bool Chessboard::isValidMove(const position& from, const position& to) const {
+    // Verifica se o caminho entre as posições está livre de obstáculos
+    bool isitclear = isPathClear(from, to);
+
+    // Se o caminho não estiver livre, retorna falso
+    if (isitclear == false) {
+        return false;
+    }
+    
+    // Verifica se é o turno das peças brancas e se a peça na posição de origem é preta
+    if (isWhiteTurn && retPiece(from.row, from.col).getColor() == BLACKn) {
+        return false; // Retorna falso se for o turno das brancas e a peça na posição de origem for preta
+    }
+    
+    // Verifica se não é o turno das peças brancas e se a peça na posição de origem é branca
+    if (!isWhiteTurn && retPiece(from.row, from.col).getColor() == WHITEn) {
+        return false; // Retorna falso se não for o turno das brancas e a peça na posição de origem for branca
+    }
+    
+    // Verifica o tipo de peça na posição de origem e chama o método correspondente para validar o movimento
+    switch (retPiece(from.row, from.col).getType()) {
+        case KING: {
+            King k(retPiece(from.row, from.col).getColor());
+            return k.isValidKingMove(from.col, from.row, to.col, to.row);
+        }
+        case PAWN: {
+            Pawn p(retPiece(from.row, from.col).getColor());
+            return p.isValidPawnMove(from.col, from.row, to.col, to.row, board[to.row][to.col].getColor());
+        }
+        case BISHOP: {
+            Bishop b(retPiece(from.row, from.col).getColor());
+            return b.isValidBishopMove(from.col, from.row, to.col, to.row);
+        }
+        case QUEEN: {
+            Queen q(retPiece(from.row, from.col).getColor());
+            return q.isValidQueenMove(from.col, from.row, to.col, to.row);
+        }
+        case KNIGHT: {
+            Knight n(retPiece(from.row, from.col).getColor());
+            return n.isValidKnightMove(from.col, from.row, to.col, to.row);
+        }
+        case ROOK: {
+            Rook r(retPiece(from.row, from.col).getColor());
+            return r.isValidRookMove(from.col, from.row, to.col, to.row);
+        }
+    }
+    return false; // Retorna falso se nenhum movimento válido foi encontrado
+}
