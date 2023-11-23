@@ -148,3 +148,40 @@ Piece Chessboard::retPiece(const int& row, const int& col) const
 {
     return board[row][col];
 }
+
+    /**
+     * @brief Move uma peça de uma posição de origem para uma posição de destino.
+     *
+     * @param from A posição de origem.
+     * @param to A posição de destino.
+     */
+void Chessboard::movePiece(const position& from, const position& to) {
+    // Verifica se a posição de origem está vazia
+    if (retPiece(from.row, from.col).getType() == EMPTY) {
+        return; // Se estiver vazia, encerra a função (nenhuma peça para mover)
+    }
+    
+    // Verifica se a peça na posição de origem tem a mesma cor da peça na posição de destino
+    if (retPiece(from.row, from.col).getColor() == retPiece(to.row, to.col).getColor()) {
+        return; // Se as peças tiverem a mesma cor, encerra a função (não é permitido mover para uma posição ocupada pela mesma cor)
+    }
+    
+    // Verifica se a posição de destino está vazia e se o movimento é válido
+    if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() == EMPTY && isValidMove(from, to)) {
+        // Move a peça para a posição de destino, atualiza o tabuleiro e troca o turno
+        board[to.row][to.col] = board[from.row][from.col];
+        board[from.row][from.col] = Piece(EMPTY, EMPTY);
+        isWhiteTurn = !isWhiteTurn;
+        return;
+    }
+    
+    // Verifica se a posição de destino está ocupada e se o movimento é válido
+    if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() != EMPTY && isValidMove(from, to)) {
+        // Captura a peça na posição de destino, move a peça de origem para lá, atualiza o tabuleiro e troca o turno
+        board[to.row][to.col] = Piece(EMPTY, EMPTY);
+        board[to.row][to.col] = board[from.row][from.col];
+        board[from.row][from.col] = Piece(EMPTY, EMPTY);
+        isWhiteTurn = !isWhiteTurn;
+        return;
+    }
+}
