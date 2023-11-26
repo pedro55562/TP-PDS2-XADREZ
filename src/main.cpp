@@ -10,6 +10,15 @@
 
 #include "../include/ChessRenderer.h"
 #include "../include/Chessboard.h"
+#include "../include/Chess_constants.h"
+#include "../include/Bishop.h"
+#include "../include/Bishop.h"
+#include "../include/King.h"
+#include "../include/Knight.h"
+#include "../include/Pawn.h"
+#include "../include/Piece.h"
+#include "../include/Queen.h"
+#include "../include/Rook.h"
 
 #include <list>
 #include <string>
