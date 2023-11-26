@@ -83,34 +83,14 @@ private:
     bool leavesKingInCheck(const position& from, const position& to) const;
 
     /**
-     * @brief Obtém todas as possíveis posições para movimentos válidos das peças no tabuleiro.
+     * @brief Verifica se uma dada posição está sob ataque.
      *
-     * Esta função retorna uma lista contendo todas as posições possíveis para movimentos válidos
-     * das peças no tabuleiro atual. As posições são representadas pela estrutura 'position'.
+     * Esta função verifica se uma certa peça está sob ataque na posição especificada.
      *
-     * @return Uma lista de posições possíveis para movimentos válidos das peças no tabuleiro.
+     * @param pos A posição da peça a ser verificada.
+     * @return true se a peça estiver sob ataque na posição, false caso contrário.
      */
-    list<position> getAllPossibleMoves() const;
-
-    /**
-     * @brief Verifica se o rei branco está sob ataque na posição fornecida.
-     *
-     * Esta função verifica se o rei branco está sob ataque na posição especificada.
-     *
-     * @param pos A posição do rei branco a ser verificada.
-     * @return true se o rei branco estiver sob ataque na posição, false caso contrário.
-     */
-    bool whiteKingIsUnderAtack(const position& pos) const;
-
-    /**
-     * @brief Verifica se o rei preto está sob ataque na posição fornecida.
-     *
-     * Esta função verifica se o rei preto está sob ataque na posição especificada.
-     *
-     * @param pos A posição do rei preto a ser verificada.
-     * @return true se o rei preto estiver sob ataque na posição, false caso contrário.
-     */
-    bool blackKingIsUnderAtack(const position& pos) const;
+    bool isPieceUnderAtack(const position& pos);
 
 
 public:
@@ -131,8 +111,18 @@ public:
     /**
      * @brief Imprime o tabuleiro na saída padrão.
      */
-    void printBoard() const;
+    void printBoard();
 
+    /**
+     * @brief Obtém todas as possíveis posições para movimentos válidos das peças no tabuleiro.
+     *
+     * Esta função retorna uma lista contendo todas as posições possíveis para movimentos válidos
+     * das peças no tabuleiro atual. As posições são representadas pela estrutura 'position'.
+     *
+     * @return Uma lista de posições possíveis para movimentos válidos das peças no tabuleiro.
+     */
+    list<position> getAllPossibleMoves();
+    
     /**
      * @brief Retorna a peça em uma posição específica no tabuleiro.
      *
@@ -165,7 +155,7 @@ public:
      *
      * @return true se o rei do jogador atual está em xeque, false caso contrário.
      */
-    bool isCheck() const;
+    bool isCheck();
 
     /**
      * @brief Verifica se um jogador está em xeque-mate.
@@ -175,7 +165,7 @@ public:
      *
      * @return true se o jogador estiver em xeque-mate, false caso contrário.
      */
-    bool isCheckmate() const;
+    bool isCheckmate();
 };
 
 #endif

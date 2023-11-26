@@ -96,13 +96,13 @@ Chessboard::Chessboard(const string& fen)
                 break;
             case 'k':
                 board[row][col] = Piece(KING, BLACKn);
-                whiteKingPos.col = col;
-                whiteKingPos.row = row;
+                blackKingPos.col = col;
+                blackKingPos.row = row;
                 break;
             case 'K':
                 board[row][col] = Piece(KING, WHITEn);
-                blackKingPos.col = col;
-                blackKingPos.row = row;
+                whiteKingPos.col = col;
+                whiteKingPos.row = row;
                 break;
             }
         // parte para a próxima casa
@@ -115,7 +115,7 @@ Chessboard::Chessboard(const string& fen)
     /**
      * @brief Imprime o tabuleiro na saída padrão.
      */
-void Chessboard::printBoard() const
+void Chessboard::printBoard()
 {
     // Loop para imprimir os tipos das peças no tabuleiro
     cout << endl << " Imprimindo o tido das peças: " << endl << endl;
@@ -145,6 +145,10 @@ void Chessboard::printBoard() const
     cout << " Rei branco: " << whiteKingPos.row << " " << whiteKingPos.col << endl;
     cout << " Rei preto: " << blackKingPos.row << " " << blackKingPos.col << endl;
     cout << "\n\n";
+
+    //Jogador atual:
+    cout << "\nIsCheck: " << isCheck() << "\n\n";
+
 }
 
 
@@ -594,7 +598,10 @@ list<position> Chessboard::getPossibleDestinations(const position& from)
     return lista_;
 }
 
-list<position> Chessboard::getAllPossibleMoves()const{
+// gerar todos os movimentos do OPONENTE!
+list<position> Chessboard::getAllPossibleMoves(){
+    isWhiteTurn = !isWhiteTurn;
+
     // Lista que armazenará os destinos possíveis
     list<position> lista_;
 
@@ -603,12 +610,12 @@ list<position> Chessboard::getAllPossibleMoves()const{
     vector<int> dirCol = {1, -1};
     for(int from_row = 0; from_row < 8; from_row++){
         for(int from_col = 0; from_col < 8; from_col++){
+            position from = {from_row,from_col};            
 
-            position from = {from_row,from_col};     
             // Verifica o tipo de peça na posição inicial
             switch (retPiece(from_row, from_col).getType())
             {
-
+                
             case KING:
             {
                 // Direções possíveis para o Rei (horizontal, vertical e diagonal)
@@ -634,33 +641,57 @@ list<position> Chessboard::getAllPossibleMoves()const{
                 }
                 break;
             }
-
             case PAWN:
             {
-                vector<int> PdirRow = {-1, -2, 1, 2}; // Vetor de movimentos possíveis para as linhas do peão
-                vector<int> PdirCol = {0, 1, -1}; // Vetor de movimentos possíveis para as colunas do peão
+                vector<int> PdirRow;
+                vector<int> PdirCol;
+
+                // Define as direções de movimento do peão com base na cor (branco ou preto)
+                if (retPiece(from_row, from_col).getColor() == WHITEn) {
+                    PdirRow = {-1,-2}; // Peão branco move para cima (linhas decrescentes)
+                } else {
+                    PdirRow = {1,2}; // Peão preto move para baixo (linhas crescentes)
+                }
                 
-                // Itera sobre as direções possíveis para o peão
+                PdirCol = {0}; // O peão move-se somente verticalmente
+                
                 for (int dr : PdirRow)
                 {
                     for (int dc : PdirCol)
                     {
                         position dest = {from_row + dr, from_col + dc}; // Calcula a posição de destino para o peão
-                            
+                                    
                         // Verifica se a posição de destino está dentro do tabuleiro
                         if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1)
                         {
-                            // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
-                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            // Verifica se o movimento é válido e se a posição de destino está vazia
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getType() == EMPTY && dest.col == from.col)
                             {
                                 lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
                             }
                         }
                     }
                 }
+
+                // Captura diagonal
+                vector<int> captureCols = {1, -1}; // Colunas para captura diagonal
+                for (int dr : PdirRow)
+                {
+                    for (int dc : captureCols)
+                    {
+                        position dest = {from_row + dr, from_col + dc}; // Calcula a posição de destino para a captura diagonal
+                                        
+                        // Verifica se a posição de destino está dentro do tabuleiro e se é uma peça adversária
+                        if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1 &&
+                            isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor() &&
+                            abs(dc) == 1) // Movimento diagonal (coluna alterada)
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                    }
+                }
                 break;
             }
-            
             case BISHOP:
             {
                 // movimento diagonal do bispo
@@ -674,18 +705,13 @@ list<position> Chessboard::getAllPossibleMoves()const{
                             position dest = {curRow, curCol}; // Calcula a posição de destino na diagonal
                             
                             // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
-                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor() && (dest.row != from.row) && (dest.col != from.col))
                             {
                                 lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
-                            }
-                            else
-                            {
-                                break; // Sai do loop caso o movimento não seja válido ou se encontrar uma peça na diagonal
                             }
                         }
                     }
                 }
-
                 break;
             }
                 
@@ -703,10 +729,6 @@ list<position> Chessboard::getAllPossibleMoves()const{
                         {
                             lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
                         }
-                        else
-                        {
-                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
-                        }
                     }
                 }
                 
@@ -721,10 +743,6 @@ list<position> Chessboard::getAllPossibleMoves()const{
                         if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
                         {
                             lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
-                        }
-                        else
-                        {
-                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
                         }
                     }
                 }
@@ -743,14 +761,10 @@ list<position> Chessboard::getAllPossibleMoves()const{
                             {
                                 lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
                             }
-                            else
-                            {
-                                break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
-                            }
+
                         }
                     }
                 }
-
                 break;
             }
 
@@ -774,7 +788,6 @@ list<position> Chessboard::getAllPossibleMoves()const{
                         }
                     }
                 }
-
                 break;
             }
                 
@@ -788,13 +801,9 @@ list<position> Chessboard::getAllPossibleMoves()const{
                         position dest = {curRow, from_col}; // Calcula a posição de destino na linha
                             
                         // Verifica se a posição de destino está dentro do tabuleiro
-                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
-                        {
+                        if (isValidMove(from, dest) && ( (retPiece(dest.row, dest.col).getType() == EMPTY) 
+                        || (retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor()) ))                        {
                             lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
-                        }
-                        else
-                        {
-                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
                         }
                     }
                 }
@@ -807,13 +816,11 @@ list<position> Chessboard::getAllPossibleMoves()const{
                         position dest = {from_row, curCol}; // Calcula a posição de destino na coluna
                             
                         // Verifica se a posição de destino está dentro do tabuleiro
-                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        // Verifica se a posição de destino está dentro do tabuleiro
+                        if (isValidMove(from, dest) && ( (retPiece(dest.row, dest.col).getType() == EMPTY) 
+                        || (retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor()) ) )
                         {
                             lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
-                        }
-                        else
-                        {
-                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
                         }
                     }
                 }
@@ -822,17 +829,31 @@ list<position> Chessboard::getAllPossibleMoves()const{
 
             }
         }
-    }    
+    }   
+    isWhiteTurn = !isWhiteTurn; 
     return lista_; 
 }
 
-bool Chessboard::whiteKingIsUnderAtack(const position& pos) const{
-
+bool Chessboard::isPieceUnderAtack(const position& pos){
+    list<position> lista_ = getAllPossibleMoves();
+    for(auto it = lista_.begin(); it != lista_.end(); it++){
+        if ( (it->col == pos.col) && (it->row == pos.row)){
+            return true;
+        }
+    }
+    return false;
 }
 
-bool Chessboard::blackKingIsUnderAtack(const position& pos) const{
-
-}
 bool Chessboard::leavesKingInCheck(const position& from, const position& to) const{
+    
+}
 
+bool Chessboard::isCheck(){
+    if(isWhiteTurn){
+        return isPieceUnderAtack(whiteKingPos);
+    }
+    if(!isWhiteTurn){
+        return isPieceUnderAtack(blackKingPos);
+    }
+    return false;
 }
