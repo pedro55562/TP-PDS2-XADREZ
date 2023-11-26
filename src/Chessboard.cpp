@@ -96,9 +96,13 @@ Chessboard::Chessboard(const string& fen)
                 break;
             case 'k':
                 board[row][col] = Piece(KING, BLACKn);
+                whiteKingPos.col = col;
+                whiteKingPos.row = row;
                 break;
             case 'K':
                 board[row][col] = Piece(KING, WHITEn);
+                blackKingPos.col = col;
+                blackKingPos.row = row;
                 break;
             }
         // parte para a próxima casa
@@ -135,7 +139,12 @@ void Chessboard::printBoard() const
         }
         cout << endl; // Avança para a próxima linha após imprimir uma linha completa do tabuleiro
     }
-    cout << endl;
+
+    // Imprime a posição dos reis
+    cout << "\n\n";
+    cout << " Rei branco: " << whiteKingPos.row << " " << whiteKingPos.col << endl;
+    cout << " Rei preto: " << blackKingPos.row << " " << blackKingPos.col << endl;
+    cout << "\n\n";
 }
 
 
@@ -174,7 +183,7 @@ void Chessboard::movePiece(const position& from, const position& to) {
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
         isWhiteTurn = !isWhiteTurn;
-        return;
+        updateKingPosition(to);
     }
     
     // Verifica se a posição de destino está ocupada e se o movimento é válido
@@ -184,9 +193,35 @@ void Chessboard::movePiece(const position& from, const position& to) {
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
         isWhiteTurn = !isWhiteTurn;
-        return;
+        updateKingPosition(to);
     }
 }
+    /**
+     * @brief Atualiza a posição do rei após uma jogada.
+     *
+     * Esta função atualiza a posição do rei na estrutura de dados de posição após uma jogada
+     * ser realizada.
+     *
+     * @param pos A posição após a jogada.
+     */
+    void Chessboard::updateKingPosition(const position& pos){
+        // Verifica se a peça na posição 'pos' é um rei
+        if(retPiece(pos.row,pos.col).getType() == KING){
+            // Verifica se é o rei branco e atualiza sua posição se for
+            if(retPiece(pos.row,pos.col).getColor() == WHITEn){
+                whiteKingPos.row = pos.row;
+                whiteKingPos.col = pos.col;
+                return;
+            }
+            // Verifica se é o rei preto e atualiza sua posição se for
+            if(retPiece(pos.row,pos.col).getColor() == BLACKn){
+                blackKingPos.row = pos.row;
+                blackKingPos.col = pos.col;
+                return;
+            }
+        }
+    }
+
 
     /**
      * @brief Verifica se o caminho entre duas posições está livre de obstáculos.

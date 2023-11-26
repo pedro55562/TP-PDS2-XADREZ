@@ -42,6 +42,9 @@ private:
     vector<vector<Piece>> board; ///< O tabuleiro de xadrez representado como uma matriz de peças.
     bool isWhiteTurn; ///< Indica se é o turno das peças brancas.
 
+    position whiteKingPos; ///< Indica a posicção do rei branco
+    position blackKingPos; ///< Indica a posicção do rei branco
+
     /**
      * @brief Verifica se um movimento de uma posição para outra é válido.
      *
@@ -61,7 +64,16 @@ private:
     bool isPathClear(const position& from, const position& to) const;
 
     /**
-     * @brief Verifica se um movimento de uma posição de origem para uma posição de destino
+     * @brief Atualiza a posição do rei após uma jogada.
+     *
+     * Esta função atualiza a posição do rei na estrutura de dados de posição após uma jogada
+     * ser realizada.
+     *
+     * @param pos A posição após a jogada.
+     */
+    void updateKingPosition(const position& pos);
+
+     /** @brief Verifica se um movimento de uma posição de origem para uma posição de destino
      * deixa o rei da cor atual em xeque.
      *
      * @param from A posição de origem.
