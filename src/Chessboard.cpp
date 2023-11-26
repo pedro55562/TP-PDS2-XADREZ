@@ -595,7 +595,235 @@ list<position> Chessboard::getPossibleDestinations(const position& from)
 }
 
 list<position> Chessboard::getAllPossibleMoves()const{
-    
+    // Lista que armazenará os destinos possíveis
+    list<position> lista_;
+
+    // Vetores de direções para linhas e colunas
+    vector<int> dirRow = {1, -1};
+    vector<int> dirCol = {1, -1};
+    for(int from_row = 0; from_row < 8; from_row++){
+        for(int from_col = 0; from_col < 8; from_col++){
+
+            position from = {from_row,from_col};     
+            // Verifica o tipo de peça na posição inicial
+            switch (retPiece(from_row, from_col).getType())
+            {
+
+            case KING:
+            {
+                // Direções possíveis para o Rei (horizontal, vertical e diagonal)
+                vector<int> kdirRow = {0, 1, -1};
+                vector<int> kdirCol = {0, 1, -1};
+
+                // Itera sobre as direções possíveis para o Rei
+                for (int dr : kdirRow)
+                {
+                    for (int dc : kdirCol)
+                    {
+                        position dest = {from_row + dr, from_col + dc};
+                        // Verifica se a posição de destino está dentro do tabuleiro
+                        if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1)
+                        {
+                            // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            {
+                                lista_.push_back(dest); // Adiciona a posição de destino à lista
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+
+            case PAWN:
+            {
+                vector<int> PdirRow = {-1, -2, 1, 2}; // Vetor de movimentos possíveis para as linhas do peão
+                vector<int> PdirCol = {0, 1, -1}; // Vetor de movimentos possíveis para as colunas do peão
+                
+                // Itera sobre as direções possíveis para o peão
+                for (int dr : PdirRow)
+                {
+                    for (int dc : PdirCol)
+                    {
+                        position dest = {from_row + dr, from_col + dc}; // Calcula a posição de destino para o peão
+                            
+                        // Verifica se a posição de destino está dentro do tabuleiro
+                        if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1)
+                        {
+                            // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            {
+                                lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+            
+            case BISHOP:
+            {
+                // movimento diagonal do bispo
+                for (int dr : dirRow)
+                {
+                    for (int dc : dirCol)
+                    {
+                        // Percorre na diagonal a partir da posição atual (from)
+                        for (int curRow = from_row + dr, curCol = from_col + dc; curRow < BOARD_SIZE && curRow > -1 && curCol < BOARD_SIZE && curCol > -1; curCol += dc, curRow += dr)
+                        {
+                            position dest = {curRow, curCol}; // Calcula a posição de destino na diagonal
+                            
+                            // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            {
+                                lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                            }
+                            else
+                            {
+                                break; // Sai do loop caso o movimento não seja válido ou se encontrar uma peça na diagonal
+                            }
+                        }
+                    }
+                }
+
+                break;
+            }
+                
+            case QUEEN:
+            {
+                // Movimento vertical (pelas linhas)
+                for (int dr : dirRow)
+                {
+                    for (int curRow = from_row + dr; curRow < BOARD_SIZE && curRow > -1; curRow += dr)
+                    {
+                        position dest = {curRow, from_col}; // Calcula a posição de destino na linha
+                            
+                        // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                        else
+                        {
+                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
+                        }
+                    }
+                }
+                
+                // Movimento horizontal (pelas colunas)
+                for (int dc : dirCol)
+                {
+                    for (int curCol = from_col + dc; curCol < BOARD_SIZE && curCol > -1; curCol += dc)
+                    {
+                        position dest = {from_row, curCol}; // Calcula a posição de destino na coluna
+                            
+                        // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                        else
+                        {
+                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
+                        }
+                    }
+                }
+
+                // Movimento diagonal
+                for (int dr : dirRow)
+                {
+                    for (int dc : dirCol)
+                    {
+                        for (int curRow = from_row + dr, curCol = from_col + dc; curRow < BOARD_SIZE && curRow > -1 && curCol < BOARD_SIZE && curCol > -1; curCol += dc, curRow += dr)
+                        {
+                            position dest = {curRow, curCol}; // Calcula a posição de destino na diagonal
+                                
+                            // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                            if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                            {
+                                lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                            }
+                            else
+                            {
+                                break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
+                            }
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case KNIGHT:
+            {
+                // Vetor de posições válidas para o movimento do cavalo em L
+                vector<position> validmoves = {{-1, 2}, {-1, -2}, {1, 2}, {1, -2}, {-2, 1}, {-2, -1}, {2, 1}, {2, -1}};
+                
+                // Itera sobre as posições válidas para o movimento do cavalo
+                for (int i = 0; i < (int) validmoves.size(); i++)
+                {
+                    position dest = {from_row + validmoves[i].row , from_col + validmoves[i].col }; // Calcula a posição de destino
+                    
+                    // Verifica se a posição de destino está dentro do tabuleiro
+                    if( dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1 )
+                    { 
+                        // Verifica se o movimento é válido e se a peça na posição de destino é de cor diferente
+                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                    }
+                }
+
+                break;
+            }
+                
+            case ROOK:
+            {
+                // Movimento vertical (pelas linhas)
+                for (int dr : dirRow)
+                {
+                    for (int curRow = from_row + dr; curRow < BOARD_SIZE && curRow > -1; curRow += dr)
+                    {
+                        position dest = {curRow, from_col}; // Calcula a posição de destino na linha
+                            
+                        // Verifica se a posição de destino está dentro do tabuleiro
+                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                        else
+                        {
+                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
+                        }
+                    }
+                }
+                
+                // Movimento horizontal (pelas colunas)
+                for (int dc : dirCol)
+                {
+                    for (int curCol = from_col + dc; curCol < BOARD_SIZE && curCol > -1; curCol += dc)
+                    {
+                        position dest = {from_row, curCol}; // Calcula a posição de destino na coluna
+                            
+                        // Verifica se a posição de destino está dentro do tabuleiro
+                        if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from_row, from_col).getColor())
+                        {
+                            lista_.push_back(dest); // Adiciona a posição de destino à lista de destinos possíveis
+                        }
+                        else
+                        {
+                            break; // Sai do loop se encontrar uma peça no caminho ou se a posição não for válida
+                        }
+                    }
+                }
+                break;
+            }
+
+            }
+        }
+    }    
+    return lista_; 
 }
 
 bool Chessboard::whiteKingIsUnderAtack(const position& pos) const{
