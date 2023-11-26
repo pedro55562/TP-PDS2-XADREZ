@@ -593,3 +593,18 @@ list<position> Chessboard::getPossibleDestinations(const position& from)
     
     return lista_;
 }
+
+list<position> Chessboard::getAllPossibleMoves()const{
+    
+}
+
+bool Chessboard::whiteKingIsUnderAtack(const position& pos) const{
+
+}
+
+bool Chessboard::blackKingIsUnderAtack(const position& pos) const{
+
+}
+bool Chessboard::leavesKingInCheck(const position& from, const position& to) const{
+
+}

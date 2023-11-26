@@ -82,6 +82,37 @@ private:
      */
     bool leavesKingInCheck(const position& from, const position& to) const;
 
+/**
+ * @brief Obtém todas as possíveis posições para movimentos válidos das peças no tabuleiro.
+ *
+ * Esta função retorna uma lista contendo todas as posições possíveis para movimentos válidos
+ * das peças no tabuleiro atual. As posições são representadas pela estrutura 'position'.
+ *
+ * @return Uma lista de posições possíveis para movimentos válidos das peças no tabuleiro.
+ */
+list<position> getAllPossibleMoves() const;
+
+/**
+ * @brief Verifica se o rei branco está sob ataque na posição fornecida.
+ *
+ * Esta função verifica se o rei branco está sob ataque na posição especificada.
+ *
+ * @param pos A posição do rei branco a ser verificada.
+ * @return true se o rei branco estiver sob ataque na posição, false caso contrário.
+ */
+bool whiteKingIsUnderAtack(const position& pos) const;
+
+/**
+ * @brief Verifica se o rei preto está sob ataque na posição fornecida.
+ *
+ * Esta função verifica se o rei preto está sob ataque na posição especificada.
+ *
+ * @param pos A posição do rei preto a ser verificada.
+ * @return true se o rei preto estiver sob ataque na posição, false caso contrário.
+ */
+bool blackKingIsUnderAtack(const position& pos) const;
+
+
 public:
 
     /**
