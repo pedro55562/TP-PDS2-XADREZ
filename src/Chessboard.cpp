@@ -24,8 +24,7 @@ using std::vector;
      * 
      * @param fen A string FEN que descreve o estado do tabuleiro. [Saiba mais](https://www.chess.com/terms/fen-chess)
      */
-Chessboard::Chessboard(const string& fen)
-{
+Chessboard::Chessboard(const string& fen){
     // Redimensionando a matriz board para o tamanho do tabuleiro(8x8).
     board.resize(BOARD_SIZE, vector<Piece>(BOARD_SIZE));
     
@@ -115,8 +114,7 @@ Chessboard::Chessboard(const string& fen)
     /**
      * @brief Imprime o tabuleiro na saída padrão.
      */
-void Chessboard::printBoard()
-{
+void Chessboard::printBoard(){
     // Loop para imprimir os tipos das peças no tabuleiro
     cout << endl << " Imprimindo o tido das peças: " << endl << endl;
     for (int i = 0; i < BOARD_SIZE; i++)
@@ -159,8 +157,7 @@ void Chessboard::printBoard()
      * @param col A coluna da posição.
      * @return A peça na posição especificada.
      */
-Piece Chessboard::retPiece(const int& row, const int& col) const
-{
+Piece Chessboard::retPiece(const int& row, const int& col) const{
     return board[row][col];
 }
 
@@ -218,7 +215,7 @@ void Chessboard::movePiece(const position& from, const position& to) {
                 return;
             }
             // Verifica se é o rei preto e atualiza sua posição se for
-            if(retPiece(pos.row,pos.col).getColor() == BLACKn){
+            else if(retPiece(pos.row,pos.col).getColor() == BLACKn){
                 blackKingPos.row = pos.row;
                 blackKingPos.col = pos.col;
                 return;
@@ -234,11 +231,9 @@ void Chessboard::movePiece(const position& from, const position& to) {
      * @param to A posição de destino.
      * @return true se o caminho estiver livre, false caso contrário.
      */
-bool Chessboard::isPathClear(const position& from, const position& to) const
-{
+bool Chessboard::isPathClear(const position& from, const position& to) const{
     // Verifica se a posição inicial é a mesma que a posição final
-    if (from.row == to.row && from.col == to.col)
-    {
+    if (from.row == to.row && from.col == to.col){
         return false; // Retorna falso se a posição inicial e final forem iguais (não há movimento)
     }
 
@@ -329,7 +324,7 @@ bool Chessboard::isValidMove(const position& from, const position& to) const {
     }
     
     // Verifica se não é o turno das peças brancas e se a peça na posição de origem é branca
-    if (!isWhiteTurn && retPiece(from.row, from.col).getColor() == WHITEn) {
+    else if (!isWhiteTurn && retPiece(from.row, from.col).getColor() == WHITEn) {
                 return false; // Retorna falso se não for o turno das brancas e a peça na posição de origem for branca
     }
     
@@ -369,8 +364,7 @@ bool Chessboard::isValidMove(const position& from, const position& to) const {
      * @param from A posição da peça.
      * @return Uma lista de posições possíveis de destino.
      */
-list<position> Chessboard::getPossibleDestinations(const position& from)
-{
+list<position> Chessboard::getPossibleDestinations(const position& from){
     // Lista que armazenará os destinos possíveis
     list<position> lista_;
 
@@ -851,9 +845,62 @@ bool Chessboard::leavesKingInCheck(const position& from, const position& to) con
 bool Chessboard::isCheck(){
     if(isWhiteTurn){
         return isPieceUnderAtack(whiteKingPos);
-    }
-    if(!isWhiteTurn){
+    }else{
         return isPieceUnderAtack(blackKingPos);
     }
     return false;
+}
+
+
+bool Chessboard::isCheckmate(){
+    //verifica se o sei esta em check 
+    if( isCheck() == false){//se ele n estiver em check ele n esta em Checkmate
+        return false;
+    }else{// tem um rei em check 
+        //identificar qual rei esta em check
+        int tipo; // 0 para o branco, 1 para o preto
+        int linha;
+        int coluna;
+        if(isPieceUnderAtack(whiteKingPos) == true){
+            tipo = 0;
+            linha = whiteKingPos.row;
+            coluna = whiteKingPos.col;
+        }else{
+            tipo = 1;
+            linha = blackKingPos.row;
+            coluna = blackKingPos.col;
+        }
+        int possiveis[8];//possiveis movimentos do rei 
+        for(int i = 0; i < 8; i++){//de inicio todos os movimentos são possiveis 
+            possiveis[i] = 1;
+        }
+        //0 diagonal superior esquerda em relação ao centro 
+        //1 centro superior em relação ao centro 
+        //2 diagonal superior direita em relação ao centro 
+        //3 esquerda em relação ao centro 
+        //4 direita em relação ao centro 
+        //5 diagonal inferior esquerda em relação ao centro 
+        //6 centro inferior em relação ao centro 
+        //7 diagonal inferior direita em relação ao centro
+        
+        //limites do mapa
+        if(coluna + 1 > 7){// esta no limite do mapa 
+            possiveis[4] = 0;
+            possiveis[2] = 0;
+            possiveis[7] = 0;
+        }else if(coluna - 1 < 0){// esta no limite do mapa 
+            possiveis[3] = 0;
+            possiveis[0] = 0;
+            possiveis[5] = 0;
+        }else if(linha + 1 > 7){// esta no limite do mapa 
+            possiveis[6] = 0;
+            possiveis[5] = 0;
+            possiveis[7] = 0;
+        }else if(linha - 1 < 0){// esta no limite do mapa 
+            possiveis[1] = 0;
+            possiveis[0] = 0;
+            possiveis[2] = 0;
+        }
+        //continuar eliminando os possiveis movimentos         
+    }
 }

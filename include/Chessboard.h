@@ -43,7 +43,7 @@ private:
     bool isWhiteTurn; ///< Indica se é o turno das peças brancas.
 
     position whiteKingPos; ///< Indica a posicção do rei branco
-    position blackKingPos; ///< Indica a posicção do rei branco
+    position blackKingPos; ///< Indica a posicção do rei preto
 
     /**
      * @brief Verifica se um movimento de uma posição para outra é válido.
