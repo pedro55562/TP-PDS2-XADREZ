@@ -73,26 +73,6 @@ private:
      */
     void updateKingPosition(const position& pos);
 
-     /** @brief Verifica se um movimento de uma posição de origem para uma posição de destino
-     * deixa o rei da cor atual em xeque.
-     *
-     * @param from A posição de origem.
-     * @param to A posição de destino.
-     * @return true se o movimento deixar o rei em xeque, false caso contrário.
-     */
-    bool leavesKingInCheck(const position& from, const position& to) const;
-
-    /**
-     * @brief Verifica se uma dada posição está sob ataque.
-     *
-     * Esta função verifica se uma certa peça está sob ataque na posição especificada.
-     *
-     * @param pos A posição da peça a ser verificada.
-     * @return true se a peça estiver sob ataque na posição, false caso contrário.
-     */
-    bool isPieceUnderAtack(const position& pos);
-
-
 public:
 
     /**
@@ -113,16 +93,6 @@ public:
      */
     void printBoard();
 
-    /**
-     * @brief Obtém todas as possíveis posições para movimentos válidos das peças no tabuleiro.
-     *
-     * Esta função retorna uma lista contendo todas as posições possíveis para movimentos válidos
-     * das peças no tabuleiro atual. As posições são representadas pela estrutura 'position'.
-     *
-     * @return Uma lista de posições possíveis para movimentos válidos das peças no tabuleiro.
-     */
-    list<position> getAllPossibleMoves();
-    
     /**
      * @brief Retorna a peça em uma posição específica no tabuleiro.
      *
@@ -147,25 +117,7 @@ public:
      * @return Uma lista de posições possíveis de destino.
      */
     list<position> getPossibleDestinations(const position& from);
-    
-    /**
-     * @brief Verifica se o rei do jogador atual está em xeque.
-     *
-     * Esta função verifica se o rei do jogador atual está em xeque. Um rei está em xeque quando está sob ataque por uma peça adversária.
-     *
-     * @return true se o rei do jogador atual está em xeque, false caso contrário.
-     */
-    bool isCheck();
 
-    /**
-     * @brief Verifica se um jogador está em xeque-mate.
-     *
-     * Verifica se o jogador atual está em xeque-mate, ou seja, em uma situação em que o rei
-     * do jogador não pode escapar de um xeque. Se for xeque-mate, o jogo deve terminar.
-     *
-     * @return true se o jogador estiver em xeque-mate, false caso contrário.
-     */
-    bool isCheckmate();
 };
 
 #endif
