@@ -144,9 +144,6 @@ void Chessboard::printBoard(){
     cout << " Rei preto: " << blackKingPos.row << " " << blackKingPos.col << endl;
     cout << "\n\n";
 
-    //Jogador atual:
-    cout << "\nIsCheck: " << isCheck() << "\n\n";
-
 }
 
 
