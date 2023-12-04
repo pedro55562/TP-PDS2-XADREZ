@@ -21,12 +21,30 @@ Neste projeto, utilizaremos a programação orientada a objetos (POO) e definire
 
 ## 6. Instruções de Instalação
 
-Ainda não foi decidido qual a bordagem vamos usar, estamos pensando em disponibilizar apenas um arquivo executavel ou se vamos disponibilizar o codigo fonte 
+Para compilar e executar este jogo de xadrez, é necessário ter a biblioteca Raylib instalada em seu sistema. Uma vez que a blibioteca Raylib esteja instalada siga os seguintes passos:
 
+### 1. Clone o repositório do projeto do xadrez através do comando:
+```bash
+git clone https://github.com/pedro55562/TP-PDS2-XADREZ.git
+```
+### 2. Abra um terminal e navegue até o diretório do projeto.
+
+### 3. Execute o comando make para compilar o código-fonte.
+```bash
+make
+```
+### 4. Após a compilação bem-sucedida, execute o jogo com o comando make run.
+```bash
+make run
+```
 
 ## 7. Instruções de Uso
 
-A abordagem a ser adotada ainda não foi decidida; estamos considerando se devemos disponibilizar apenas um arquivo executável ou se iremos disponibilizar o código-fonte, onde o usuário poderá utilizar um comando 'make' para iniciar o jogo.
+1. Uma vez que o codigo ja tenha sido compilado, utilize o comando make run para iniciar um novo jogo.
+
+2. Para ver os possíveis destinos de uma peça, clique na peça desejada e o jogo destacará visualmente as posições possíveis para mover essa peça. (O destaque será removido após o movimento ser realizado ou se a peça for desselecionada)
+
+3. Quando desejar mover uma pessa, basta clicar nela e clique na casa de destino para mover a peça selecionada(Após cada movimento, o estado do tabuleiro será atualizado automaticamente)
 
 ## 8. Bibliotecas externas utilizadas
 
