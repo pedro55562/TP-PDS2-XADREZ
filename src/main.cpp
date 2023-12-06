@@ -1,9 +1,9 @@
 /*
   *****************************************************
   *                                                   *
-  * O Lord, Thank you for your goodness in our lives. *
-  *     Please bless this code to our compilers.      *
-  *                     Amen.                         *
+  * O Senhor, obrigado por Sua bondade em nossas      *
+  * vidas. Por favor, abençoe este código para os    *
+  * nossos compiladores. Amen.                         *
   *                                                   *
   *****************************************************
 */
@@ -33,6 +33,14 @@ using std::string;
 using std::cout;
 using std::endl;
 
+/**
+ * @brief Função principal do jogo de xadrez.
+ *
+ * Aqui é iniciado o jogo de xadrez, incluindo a criação do tabuleiro, a renderização gráfica
+ * e o loop principal do jogo.
+ *
+ * @return 0 para indicar término bem-sucedido.
+ */
 int main (){
   try
   {  
@@ -60,9 +68,9 @@ int main (){
     }
   }catch(OutOfBounds& ex)
   {
+    // Tratamento da exceção para posição fora dos limites do tabuleiro
     cout << "Erro: A posição (" << ex.p.row << ", " << ex.p.col << ") está fora dos limites do tabuleiro! \n";
   }
-
 
   return 0;
 }
