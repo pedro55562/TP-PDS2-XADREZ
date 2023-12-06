@@ -155,6 +155,12 @@ void Chessboard::printBoard(){
      * @return A peça na posição especificada.
      */
 Piece Chessboard::retPiece(const int& row, const int& col) const{
+    if(row > 7 || col > 7){
+        OutOfBounds temp;
+        temp.p.row = row;
+        temp.p.col = col;
+        throw temp;
+    }
     return board[row][col];
 }
 
@@ -165,6 +171,19 @@ Piece Chessboard::retPiece(const int& row, const int& col) const{
      * @param to A posição de destino.
      */
 void Chessboard::movePiece(const position& from, const position& to) {
+    if(from.row > 7 || from.col > 7){
+        OutOfBounds temp;
+        temp.p.row = from.row;
+        temp.p.col = from.col;
+        throw temp;
+    }
+    if(to.row > 7 || to.col > 7){
+        OutOfBounds temp;
+        temp.p.row = to.row;
+        temp.p.col = to.col;
+        throw temp;
+    }
+
     // Verifica se a posição de origem está vazia
     if (retPiece(from.row, from.col).getType() == EMPTY) {
         return; // Se estiver vazia, encerra a função (nenhuma peça para mover)
@@ -203,6 +222,13 @@ void Chessboard::movePiece(const position& from, const position& to) {
      * @param pos A posição após a jogada.
      */
     void Chessboard::updateKingPosition(const position& pos){
+    if(pos.row > 7 || pos.col > 7){
+        OutOfBounds temp;
+        temp.p.row = pos.row;
+        temp.p.col = pos.col;
+        throw temp;
+    }
+
         // Verifica se a peça na posição 'pos' é um rei
         if(retPiece(pos.row,pos.col).getType() == KING){
             // Verifica se é o rei branco e atualiza sua posição se for
@@ -229,6 +255,19 @@ void Chessboard::movePiece(const position& from, const position& to) {
      * @return true se o caminho estiver livre, false caso contrário.
      */
 bool Chessboard::isPathClear(const position& from, const position& to) const{
+    if(from.row > 7 || from.col > 7){
+        OutOfBounds temp;
+        temp.p.row = from.row;
+        temp.p.col = from.col;
+        throw temp;
+    }
+    if(to.row > 7 || to.col > 7){
+        OutOfBounds temp;
+        temp.p.row = to.row;
+        temp.p.col = to.col;
+        throw temp;
+    }
+    
     // Verifica se a posição inicial é a mesma que a posição final
     if (from.row == to.row && from.col == to.col){
         return false; // Retorna falso se a posição inicial e final forem iguais (não há movimento)
@@ -307,6 +346,19 @@ bool Chessboard::isPathClear(const position& from, const position& to) const{
      * @return true se o movimento for válido, false caso contrário.
      */
 bool Chessboard::isValidMove(const position& from, const position& to) const {
+    if(from.row > 7 || from.col > 7){
+        OutOfBounds temp;
+        temp.p.row = from.row;
+        temp.p.col = from.col;
+        throw temp;
+    }
+    if(to.row > 7 || to.col > 7){
+        OutOfBounds temp;
+        temp.p.row = to.row;
+        temp.p.col = to.col;
+        throw temp;
+    }
+
     // Verifica se o caminho entre as posições está livre de obstáculos
     bool isitclear = isPathClear(from, to);
     
@@ -362,6 +414,13 @@ bool Chessboard::isValidMove(const position& from, const position& to) const {
      * @return Uma lista de posições possíveis de destino.
      */
 list<position> Chessboard::getPossibleDestinations(const position& from){
+    if(from.row > 7 || from.col > 7){
+        OutOfBounds temp;
+        temp.p.row = from.row;
+        temp.p.col = from.col;
+        throw temp;
+    }
+    
     // Lista que armazenará os destinos possíveis
     list<position> lista_;
 

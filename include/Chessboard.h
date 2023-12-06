@@ -29,6 +29,14 @@ struct position {
     int col; ///< A coluna da posição.
 };
 
+/**
+ * @struct OutOfBounds
+ * @brief Estrutura que representa a exceção lançada quando uma posição está fora dos limites do tabuleiro.
+ */
+struct OutOfBounds{
+    position p; /**< Posição que está fora dos limites do tabuleiro. */
+};
+
 const int BOARD_SIZE = 8; ///< Tamanho padrão do tabuleiro de xadrez.
 
 const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; ///< FEN padrão para um tabuleiro de xadrez inicial. [Saiba mais](https://www.chess.com/terms/fen-chess)
